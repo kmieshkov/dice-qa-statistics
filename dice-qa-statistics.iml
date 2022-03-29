@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/lib" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-api-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-chrome-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-chromium-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v85-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v95-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v96-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v97-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-edge-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-firefox-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-firefox-xpi-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-http-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-ie-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-java-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-json-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-opera-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-remote-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-safari-driver-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-support-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/slf4j-simple-1.7.9.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/webdrivermanager-5.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-api-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-chrome-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-chromium-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v85-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v95-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v96-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-devtools-v97-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-edge-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-firefox-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-firefox-xpi-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-http-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-ie-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-json-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-opera-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-remote-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-safari-driver-4.1.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/selenium-support-4.1.2-sources.jar!/" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/ProgramFiles/selenium-java-4.1.2/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/build/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/demo/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/generated/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/legacy/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/main/core-api/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/main/core-impl/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/main/protocol-impl/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/main/user-api/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/main/user-impl/java" />
+          <root url="file://$USER_HOME$/ProgramFiles/mysql-connector-java-8.0.28/src/test/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
