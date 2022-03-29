@@ -15,14 +15,14 @@ import java.util.*;
 
 public class DiceQaStatistics {
 
+	public static String remoteDataBase = "jdbc:mysql://remotemysql.com:3306/l7KuvpmIc9";
 	public static String userName = "";
 	public static String password = "";
 
 	public static void main(String[] args) throws SQLException {
 
 		// get search data from the DB
-		String url = "jdbc:mysql://remotemysql.com:3306/l7KuvpmIc9";
-		Connection con = DriverManager.getConnection(url, userName, password);
+		Connection con = DriverManager.getConnection(remoteDataBase, userName, password);
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `search_data`");
 		int i = 0;
@@ -45,12 +45,13 @@ public class DiceQaStatistics {
 		for (Map<String, String> data : presets) {
 			result = script(data);
 			data.put("result", result);
-			workWithDB(con, data);
+			workWithDB(data);
 		}
 	}
 
-	public static void workWithDB(Connection con, Map<String, String> data) {
+	public static void workWithDB(Map<String, String> data) {
 		try {
+			Connection con = DriverManager.getConnection(remoteDataBase, userName, password);
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS `dice` (" +
 					"`id` INT(11) NOT NULL PRIMARY KEY auto_increment," +
@@ -85,7 +86,7 @@ public class DiceQaStatistics {
 	public static String script(Map<String, String> data) {
 
 		// init driver
-		System.setProperty("webdriver.chrome.driver", "/Users/kmieshkov/ProgramFiles/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "chromedriver");
 		ChromeOptions options= new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
 		WebDriver driver = new ChromeDriver(options);
