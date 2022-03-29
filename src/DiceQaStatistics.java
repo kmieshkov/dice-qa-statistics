@@ -14,76 +14,43 @@ import java.util.*;
 // REMOTE MySQL - https://remotemysql.com/
 
 public class DiceQaStatistics {
+
+	public static String userName = "";
+	public static String password = "";
+
 	public static void main(String[] args) throws SQLException {
-		// init presets
-		String jobTitle = "qa OR sqa OR quality OR testing OR tester";
-		Map<String, String> map1 = new HashMap<String, String>();
-		Map<String, String> map2 = new HashMap<String, String>();
-		Map<String, String> map3 = new HashMap<String, String>();
-		Map<String, String> map4 = new HashMap<String, String>();
-		Map<String, String> map5 = new HashMap<String, String>();
-		Map<String, String> map6 = new HashMap<String, String>();
-		Map<String, String> map7 = new HashMap<String, String>();
-		Map<String, String> map8 = new HashMap<String, String>();
-		Map<String, String> map9 = new HashMap<String, String>();
-		Map<String, String> map10 = new HashMap<String, String>();
-		map1.put("job_title", jobTitle);
-		map1.put("location", "United States");
-		map1.put("period", "7");
-		map2.put("job_title", jobTitle);
-		map2.put("location", "United States");
-		map2.put("period", "1");
-		map3.put("job_title", jobTitle);
-		map3.put("location", "California, USA");
-		map3.put("period", "7");
-		map4.put("job_title", jobTitle);
-		map4.put("location", "California, USA");
-		map4.put("period", "1");
-		map5.put("job_title", jobTitle);
-		map5.put("location", "New York, NY, USA");
-		map5.put("period", "7");
-		map6.put("job_title", jobTitle);
-		map6.put("location", "New York, NY, USA");
-		map6.put("period", "1");
-		map7.put("job_title", jobTitle);
-		map7.put("location", "Mountain View, CA, USA");
-		map7.put("period", "7");
-		map8.put("job_title", jobTitle);
-		map8.put("location", "Mountain View, CA, USA");
-		map8.put("period", "1");
-		map9.put("job_title", jobTitle);
-		map9.put("location", "USA");
-		map9.put("period", "1");
-		map10.put("job_title", jobTitle);
-		map10.put("location", "USA");
-		map10.put("period", "7");
+
+		// get search data from the DB
+		String url = "jdbc:mysql://remotemysql.com:3306/l7KuvpmIc9";
+		Connection con = DriverManager.getConnection(url, userName, password);
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM `search_data`");
+		int i = 0;
 		List<Map<String, String>> presets = new ArrayList<>();
-		presets.add(0, map1);
-		presets.add(1, map2);
-		presets.add(2, map3);
-		presets.add(3, map4);
-		presets.add(4, map5);
-		presets.add(5, map6);
-		presets.add(6, map7);
-		presets.add(7, map8);
-		presets.add(8, map9);
-		presets.add(9, map10);
+		while (rs.next()) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("job_title", rs.getString("job_title"));
+			if (rs.getString("location").equals("Remote Only")) {
+				map.put("location", "USA");
+			} else {
+				map.put("location", rs.getString("location"));
+			}
+			map.put("period", rs.getString("period"));
+			presets.add(i, map);
+			i++;
+		}
 
 		// main loop
 		String result;
 		for (Map<String, String> data : presets) {
 			result = script(data);
 			data.put("result", result);
-			workWithDB(data);
+			workWithDB(con, data);
 		}
 	}
 
-	public static void workWithDB(Map<String, String> data) {
+	public static void workWithDB(Connection con, Map<String, String> data) {
 		try {
-			String url = "jdbc:mysql://remotemysql.com:3306/l7KuvpmIc9";
-			String userName = "";
-			String password = "";
-			Connection con = DriverManager.getConnection(url, userName, password);
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS `dice` (" +
 					"`id` INT(11) NOT NULL PRIMARY KEY auto_increment," +
@@ -128,7 +95,7 @@ public class DiceQaStatistics {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 		// set Job title
-		WebElement searchTerm = driver.findElement(By.xpath("//input[@data-cy='typeahead-input']"));
+		WebElement searchTerm = driver.findElement(By.xpath("//input[@id='typeaheadInput']"));
 		searchTerm.clear();
 		searchTerm.sendKeys(data.get("job_title"));
 
