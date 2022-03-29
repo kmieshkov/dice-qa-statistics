@@ -9,6 +9,7 @@ This project allows to get statistics from the Dice website on the QA positions 
 # Example
 
 <img src="/example/example.gif">
+
 The project is running in the backgroun, if you want to see actual web-browser window you have to **comment** options (line 91 of the code)
 
 # How to use?
