@@ -40,13 +40,25 @@ public class DiceQaStatistics {
 			i++;
 		}
 
+
+		// init driver
+		System.setProperty("webdriver.chrome.driver", "chromedriver");
+		ChromeOptions options= new ChromeOptions();
+		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+		WebDriver driver = new ChromeDriver(options);
+		driver.get("https://www.dice.com/");
+		//implicit wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 		// main loop
 		String result;
 		for (Map<String, String> data : presets) {
-			result = script(data);
+			result = script(driver, data);
 			data.put("result", result);
 			workWithDB(data);
 		}
+		// close WebDriver
+		driver.quit();
 	}
 
 	public static void workWithDB(Map<String, String> data) {
@@ -76,24 +88,14 @@ public class DiceQaStatistics {
 				pstmt.executeUpdate();
 			}
 			con.close();
-			System.out.println("Success");
+			System.out.println("Success: " + (data.get("location").equals("USA") ? "Remote Only" : data.get("location")) + " - " + data.get("period"));
 		}
 		catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	public static String script(Map<String, String> data) {
-
-		// init driver
-		System.setProperty("webdriver.chrome.driver", "chromedriver");
-		ChromeOptions options= new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
-		WebDriver driver = new ChromeDriver(options);
-		driver.get("https://www.dice.com/");
-
-		//implicit wait
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	public static String script(WebDriver driver, Map<String, String> data) {
 
 		// set Job title
 		WebElement searchTerm = driver.findElement(By.xpath("//input[@id='typeaheadInput']"));
@@ -131,8 +133,8 @@ public class DiceQaStatistics {
 		WebElement totalJobCount = driver.findElement(By.id("totalJobCount"));
 		String result = totalJobCount.getText().replace(",", "");
 
-		// close WebDriver
-		driver.quit();
+		driver.navigate().to("https://www.dice.com/");
+
 		return result;
 	}
 }
