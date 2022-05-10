@@ -1,9 +1,14 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -15,14 +20,24 @@ import java.util.*;
 
 public class DiceQaStatistics {
 
-	public static String remoteDataBase = "jdbc:mysql://remotemysql.com:3306/l7KuvpmIc9";
-	public static String userName = "";
-	public static String password = "";
+	private static final String remoteDataBase = "jdbc:mysql://";
+	private static String userName;
+	private static String password;
+	private static String url;
+	public static Properties properties = new Properties();
 
-	public static void main(String[] args) throws SQLException {
 
+	private static void init() throws IOException {
+		properties.load(new FileInputStream("data.properties"));
+		userName = properties.getProperty("userName");
+		password = properties.getProperty("password");
+		url = properties.getProperty("url");
+	}
+
+	public static void main(String[] args) throws SQLException, IOException {
+		init();
 		// get search data from the DB
-		Connection con = DriverManager.getConnection(remoteDataBase, userName, password);
+		Connection con = DriverManager.getConnection(remoteDataBase + url, userName, password);
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `search_data`");
 		int i = 0;
@@ -42,10 +57,13 @@ public class DiceQaStatistics {
 
 
 		// init driver
-		System.setProperty("webdriver.chrome.driver", "chromedriver");
-		ChromeOptions options= new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
-		WebDriver driver = new ChromeDriver(options);
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--window-size=1920,1200");
+		chromeOptions.addArguments("--disable-gpu");
+		chromeOptions.addArguments("--ignore-certificate-errors");
+		WebDriver driver = new ChromeDriver(chromeOptions);
 		driver.get("https://www.dice.com/");
 		//implicit wait
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -63,7 +81,7 @@ public class DiceQaStatistics {
 
 	public static void workWithDB(Map<String, String> data) {
 		try {
-			Connection con = DriverManager.getConnection(remoteDataBase, userName, password);
+			Connection con = DriverManager.getConnection(remoteDataBase + url, userName, password);
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS `dice` (" +
 					"`id` INT(11) NOT NULL PRIMARY KEY auto_increment," +
@@ -75,7 +93,7 @@ public class DiceQaStatistics {
 					"`time` TIME," +
 					"`week_day` VARCHAR(10)" +
 					");");
-			ResultSet rs = stmt.executeQuery("SELECT * FROM `dice` WHERE location = '" + data.get("location") + "' AND period = '" + data.get("period") + "' AND date = '" + java.time.LocalDate.now().toString() + "'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM `dice` WHERE location = '" + data.get("location") + "' AND period = '" + data.get("period") + "' AND date = '" + LocalDate.now() + "'");
 			if (!rs.next()) {
 				PreparedStatement pstmt = con.prepareStatement("INSERT INTO `dice` (job_title, location, period, result, date, time, week_day) VALUES (?, ?, ?, ?, ?, ?, ?)");
 				pstmt.setString(1, data.get("job_title"));

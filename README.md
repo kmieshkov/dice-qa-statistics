@@ -4,7 +4,7 @@ This project allows to get statistics from the Dice website on the QA positions 
 
 * Language: Java
 * DB: MySQL
-* Tools: Selenium with Chromedriver
+* Tools: Selenium with Chromedriver (managing by WebDriverManager)
 
 # Example
 
@@ -14,8 +14,5 @@ The project is running in the backgroun, if you want to see actual web-browser w
 
 # How to use?
 * Clone repo to your local machine
-* Update *chromedriver* according to your Chrome browser on the local machine
+* Create *data.properties* with data (example of this file - *example.properties*)
 * Add external libraries to the project structure (*IntelliJ IDEA: File > Project Structure > Modules*)
- * *chromedriver* and *external_libraries* located in the root directory of the project
-
-If you using Windows - add extension to the "cromedriver" in the script method (89 line of code)

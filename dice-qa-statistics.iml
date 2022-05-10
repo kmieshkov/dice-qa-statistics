@@ -75,5 +75,30 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/ProgramFiles/commons-io-2.11.0" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/ProgramFiles/commons-io-2.11.0/docs" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://$USER_HOME$/ProgramFiles/commons-io-2.11.0" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/ProgramFiles/commons-io-2.11.0" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/ProgramFiles/commons-io-2.11.0" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/ProgramFiles/web-driver-manager-5.1.1" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/ProgramFiles/web-driver-manager-5.1.1" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
