@@ -21,6 +21,7 @@ public class DiceQaStatistics {
 	private static final String remoteDataBase = "jdbc:mysql://";
 	private static String userName;
 	private static String password;
+	private static String db_url;
 	private static String url;
 	public static Properties properties = new Properties();
 
@@ -29,13 +30,14 @@ public class DiceQaStatistics {
 		properties.load(new FileInputStream("data.properties"));
 		userName = properties.getProperty("userName");
 		password = properties.getProperty("password");
+		db_url = properties.getProperty("db_url");
 		url = properties.getProperty("url");
 	}
 
 	public static void main(String[] args) throws SQLException, IOException {
 		init();
 		// get search data from the DB
-		Connection con = DriverManager.getConnection(remoteDataBase + url, userName, password);
+		Connection con = DriverManager.getConnection(remoteDataBase + db_url, userName, password);
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `search_data`");
 		int i = 0;
@@ -79,7 +81,7 @@ public class DiceQaStatistics {
 
 	public static void workWithDB(Map<String, String> data) {
 		try {
-			Connection con = DriverManager.getConnection(remoteDataBase + url, userName, password);
+			Connection con = DriverManager.getConnection(remoteDataBase + db_url, userName, password);
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS `dice` (" +
 					"`id` INT(11) NOT NULL PRIMARY KEY auto_increment," +
@@ -149,7 +151,7 @@ public class DiceQaStatistics {
 		WebElement totalJobCount = driver.findElement(By.id("totalJobCount"));
 		String result = totalJobCount.getText().replace(",", "");
 
-		driver.navigate().to("https://www.dice.com/");
+		driver.navigate().to(url);
 
 		return result;
 	}
