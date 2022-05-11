@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0f441e64-15d5-44f9-86db-814188087ab3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DiceQaStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiceQaStatistics.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
