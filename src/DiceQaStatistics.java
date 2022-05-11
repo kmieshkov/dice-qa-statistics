@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import org.apache.commons.io.FileUtils;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
