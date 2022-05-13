@@ -33,7 +33,8 @@ public class DiceQaStatistics {
 	public static Properties properties = new Properties();
 
 	private static void init() throws IOException {
-		properties.load(new FileInputStream("data.properties"));
+
+		properties.load(new FileInputStream(System.getenv("HOME") + "/Projects/IdeaProjects/dice-qa-statistics/data.properties"));
 		userName = properties.getProperty("userName");
 		password = properties.getProperty("password");
 		db_url = properties.getProperty("db_url");
@@ -60,7 +61,6 @@ public class DiceQaStatistics {
 			presets.add(i, map);
 			i++;
 		}
-
 
 		// init driver
 		WebDriverManager.chromedriver().setup();
